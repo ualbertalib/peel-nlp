@@ -1,0 +1,14 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    bind-it (0.2.7)
+      rjb (~> 1.4.3)
+    open-nlp (0.1.5)
+      bind-it (~> 0.2.5)
+    rjb (1.4.9)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  open-nlp
