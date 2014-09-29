@@ -3,12 +3,30 @@ GEM
   specs:
     bind-it (0.2.7)
       rjb (~> 1.4.3)
+    diff-lcs (1.2.5)
+    mini_portile (0.6.0)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     open-nlp (0.1.5)
       bind-it (~> 0.2.5)
     rjb (1.4.9)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+    rspec-core (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  nokogiri
   open-nlp
+  rspec

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods xmlns="http://www.loc.gov/mods/v3">
+<!--Article-level MODS for article artModsBib_1_3: /home/ddev/working1/martini/mods/1/Ar00103.mods.xml-->
+<!--pagenumlist: 1, 2, 3, 4-->
+<!--pageid: pageModsBib1; pagelist: 1, 2, 3, 4-->
+<titleInfo>
+<title>Eye Openers</title>
+</titleInfo>
+<genre>Newspaper article</genre>
+<relatedItem type="host">
+<genre>Newspaper issue</genre>
+<part>
+<detail type="volume">
+<number>9</number>
+</detail>
+<detail type="issue">
+<number>2</number>
+</detail>
+<detail type="edition">
+<number>1</number>
+</detail>
+<date encoding="w3cdtf">1911-02-11</date>
+<extent unit="pages">
+<list>pp. 1, 2, 3, 4</list>
+</extent>
+</part>
+</relatedItem>
+<extent>XLarge</extent>
+<extent unit="words">18857</extent>
+<language>en</language>
+<relatedItem type="constituent">
+<extent unit="words">4685</extent>
+<identifier type="id">Ar00103_p1</identifier>
+<identifier type="path">CEO/1911/02/11/1/Ar00103_p1</identifier>
+</relatedItem>
+<relatedItem type="constituent">
+<extent unit="words">4924</extent>
+<identifier type="id">Ar00103_p2</identifier>
+<identifier type="path">CEO/1911/02/11/2/Ar00103_p2</identifier>
+</relatedItem>
+<relatedItem type="constituent">
+<extent unit="words">5279</extent>
+<identifier type="id">Ar00103_p3</identifier>
+<identifier type="path">CEO/1911/02/11/3/Ar00103_p3</identifier>
+</relatedItem>
+<relatedItem type="constituent">
+<extent unit="words">3969</extent>
+<identifier type="id">Ar00103_p4</identifier>
+<identifier type="path">CEO/1911/02/11/4/Ar00103_p4</identifier>
+</relatedItem>
+<note type="content" xml:space="preserve">
+Here is a bunch of text I want to process. Tricia Jenkins, Sam Popowich, Dale Stories, Michael Ellis. Winnipeg. Calgary. Edmonton
+</note>
+<recordInfo>
+<recordIdentifier>CEO/1911/02/11/1/Ar00103</recordIdentifier>
+</recordInfo>
+</mods>
