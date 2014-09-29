@@ -25,6 +25,9 @@ describe NLPParser do
       expect(@nlp_parser.tags[9]).to eq "VB"
     end
 
-    it "should find any personal names that are in the text"
+    it "should find any personal names that are in the text" do
+      expect(@nlp_parser.names.size).to eq 5
+      expect(@nlp_parser.names.first).to eq [["Tricia", "Jenkins"], "person"]
+    end
   end
 end
