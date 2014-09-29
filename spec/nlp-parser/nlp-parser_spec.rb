@@ -3,8 +3,8 @@ require "../../lib/nlp_parser.rb"
 describe NLPParser do
 
   before(:each) do
-    @nlp_parser = NLPParser.new
     mods_article = File.open("../fixtures/clean_mods_article.xml").read
+    @nlp_parser = NLPParser.new ModsArticle.new
     @nlp_parser.from_xml mods_article
   end
 
@@ -36,6 +36,8 @@ describe NLPParser do
       expect(@nlp_parser.uris.first).to eq "http://dbpedia.org/resource/John_Lennon"
       expect(@nlp_parser.uris.size).to eq 4
     end
+
+    it "should create a validation table of all extracted names"
 
     it "should pull down a list of triples for each person from DBPedia"
   end

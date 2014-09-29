@@ -4,16 +4,16 @@ require_relative "./mods_article.rb"
 
 class NLPParser
 
-  def initialize
-    @mods_article = ModsArticle.new
+  def initialize(article_class)
+    @article = article_class
   end
 
   def from_xml xml_record
-    @mods_article.parse xml_record
+    @article.parse xml_record
   end
 
   def text
-    @mods_article.text
+    @article.text
   end
 
   def tokens
