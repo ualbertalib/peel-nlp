@@ -1,3 +1,4 @@
+require "open-uri"
 require "open-nlp"
 require_relative "./mods_article.rb"
 
@@ -62,5 +63,34 @@ class NLPParser
       @names = named_entities
       end
     end
+  end
+
+  def uris
+    get_uris
+    @uris
+  end
+
+  def get_uris
+    @uris = []
+    base_uri = "http://dbpedia.org/resource/"
+    processed_names.each do |name|
+      uri = base_uri+name
+      open(uri) do |f|
+        @uris << uri if OK f
+      end
+    end
+  end
+
+  def OK uri
+    uri.status.first == "200"
+  end
+
+  def processed_names
+    processed = []
+    get_names
+    @names.each do |name|
+      processed << name.first.join("_")
+    end
+    processed
   end
 end
