@@ -16,10 +16,14 @@ describe NLPParser do
 
   context "when the text field has been populated" do
     it "should tokenize the text" do
-      expect(@nlp_parser.tokens.size).to eq 7
+      expect(@nlp_parser.tokens.size).to eq 28
+      expect(@nlp_parser.tokens[9]).to eq "process"
     end
 
-    it "should tag the text with parts of speech"
+    it "should tag the text with parts of speech" do
+      expect(@nlp_parser.tags.size).to eq 28
+      expect(@nlp_parser.tags[9]).to eq "VB"
+    end
 
     it "should find any personal names that are in the text"
   end
