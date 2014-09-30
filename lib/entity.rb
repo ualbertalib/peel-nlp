@@ -35,4 +35,8 @@ class Entity
       @statements << statement
     end
   end
+
+  def to_s
+    "#{@name},#{@model},#{uri},#{valid?}"
+  end
 end

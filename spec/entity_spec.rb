@@ -22,4 +22,8 @@ describe Entity do
     expect(entity.statements.size).to eq 1331
     expect(entity.statements.first.to_s).to eq "<http://dbpedia.org/resource/Live_in_Rio_(Earth,_Wind_&_Fire_album)> <http://dbpedia.org/property/writer> <http://dbpedia.org/resource/John_Lennon> ."
   end
+
+  it "should have a string representation" do
+    expect(entity.to_s).to eq "John Lennon,person,http://dbpedia.org/resource/John_Lennon,true"
+  end
 end

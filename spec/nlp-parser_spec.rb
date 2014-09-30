@@ -42,6 +42,9 @@ describe NLPParser do
       expect(@nlp_parser.entities.first.valid?).to eq true
     end
 
-    it "should create a validation table of all extracted names"
+    it "should create a validation table of all extracted names" do
+      @nlp_parser.extract_names
+      expect(@nlp_parser.report).to eq "John_Lennon,person,http://dbpedia.org/resource/John_Lennon,true|Marie_Curie,person,http://dbpedia.org/resource/Marie_Curie,true|Maddy_Prior,person,http://dbpedia.org/resource/Maddy_Prior,true|Tom_Waits,person,http://dbpedia.org/resource/Tom_Waits,true|Sam_Popowich,person,http://dbpedia.org/resource/Sam_Popowich,|"
+    end
   end
 end

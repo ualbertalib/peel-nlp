@@ -38,7 +38,15 @@ class NLPParser
     end
   end
 
-  private 
+  def report
+    text = ""
+    @entities.each do |e|
+      text << e.to_s+"|"
+    end
+    text
+  end
+
+  private
 
   def tokenize text
     @tokenizer.tokenize(text)
