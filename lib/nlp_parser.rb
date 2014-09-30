@@ -6,6 +6,7 @@ class NLPParser
 
   def initialize(article_class)
     @article = article_class
+    OpenNLP.load
   end
 
   def from_xml xml_record
@@ -21,33 +22,30 @@ class NLPParser
   end
 
   def tokenize
-    OpenNLP.load
     tokenizer = OpenNLP::TokenizerME.new
     @tokens = tokenizer.tokenize(text)
   end
 
   def tags
-    OpenNLP.load
     tagger = OpenNLP::POSTaggerME.new
     tagger.tag(tokens).to_a
   end
 
   def names
-    @names || get_names
+    extracted_names
   end
 
-  def get_names
-    OpenNLP.load
+  def extracted_names
     tokenizer   = OpenNLP::TokenizerME.new
     segmenter   = OpenNLP::SentenceDetectorME.new
     ner_models  = ['person']
 
     ner_finders = ner_models.map do |model|
       OpenNLP::NameFinderME.new("en-ner-#{model}.bin")
-    end
 
+    end
     sentences = segmenter.sent_detect(text)
-    named_entities = []
+    names = []
 
     sentences.each do |sentence|
       tokens = tokenizer.tokenize(sentence)
@@ -58,39 +56,28 @@ class NLPParser
           start = name_span.get_start
           stop  = name_span.get_end-1
           slice = tokens[start..stop].to_a
-          named_entities << [slice, model]
+          names << slice.join("_")
         end
-      @names = named_entities
       end
     end
+    names
   end
 
   def uris
-    get_uris
-    @uris
+    @valid_uris = []
+    extracted_names.each do |name|
+      add_uri_if_valid name
+    end
+    @valid_uris
   end
 
-  def get_uris
-    @uris = []
+  def add_uri_if_valid name
     base_uri = "http://dbpedia.org/resource/"
-    processed_names.each do |name|
-      uri = base_uri+name
-      open(uri) do |f|
-        @uris << uri if OK f
-      end
-    end
+    uri = base_uri+name
+    @valid_uris << uri if open(uri){ |f| OK f }
   end
 
   def OK uri
     uri.status.first == "200"
-  end
-
-  def processed_names
-    processed = []
-    get_names
-    @names.each do |name|
-      processed << name.first.join("_")
-    end
-    processed
   end
 end

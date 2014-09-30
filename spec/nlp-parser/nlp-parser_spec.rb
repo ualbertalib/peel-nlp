@@ -26,12 +26,12 @@ describe NLPParser do
     end
 
     it "should find any personal names that are in the text" do
-      expect(@nlp_parser.names.size).to eq 5
-      expect(@nlp_parser.names.first).to eq [["John", "Lennon"], "person"]
+      expect(@nlp_parser.names.size).to eq 4
+      expect(@nlp_parser.names.first).to eq "John_Lennon"
     end
   end
 
-  context" given a list of extracted aims" do
+  context" given a list of extracted names" do
     it "should get a DBPedia URL for each person" do
       expect(@nlp_parser.uris.first).to eq "http://dbpedia.org/resource/John_Lennon"
       expect(@nlp_parser.uris.size).to eq 4
