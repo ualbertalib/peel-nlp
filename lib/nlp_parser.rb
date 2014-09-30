@@ -74,7 +74,7 @@ class NLPParser
   end
 
   def uris
-    @valid_uris = []
+    @valid_uris = {}
     extracted_names.each do |name|
       add_uri_if_valid name
     end
@@ -84,10 +84,20 @@ class NLPParser
   def add_uri_if_valid name
     base_uri = "http://dbpedia.org/resource/"
     uri = base_uri+name
-    @valid_uris << uri if open(uri){ |f| OK f }
+    @valid_uris[uri] = "OK" if open(uri){|f| OK f}
+    rescue OpenURI::HTTPError => e
   end
 
   def OK uri
     uri.status.first == "200"
+  end
+
+  def status
+    pretty = ""
+    uris
+    @valid_uris.each do |uri,status|
+      pretty << "#{uri},#{status},"
+    end
+    pretty
   end
 end
