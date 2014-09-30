@@ -8,6 +8,7 @@ describe NLPParser do
     mods_article = File.open(E::*("fixtures/clean_mods_article.xml")).read
     @nlp_parser = NLPParser.new ModsArticle.new
     @nlp_parser.from_xml mods_article
+    @nlp_parser.extract_names
   end
 
   context "Given a MODS XML file" do
@@ -28,7 +29,6 @@ describe NLPParser do
     end
 
     it "should find any personal names that are in the text" do
-      @nlp_parser.extract_names
       expect(@nlp_parser.entities.size).to eq 5
       expect(@nlp_parser.entities.first.name).to eq "John_Lennon"
       expect(@nlp_parser.entities.first.model).to eq "person"
@@ -37,13 +37,11 @@ describe NLPParser do
 
   context" given a list of extracted names" do
     it "should get a DBPedia URL for each person" do
-      @nlp_parser.extract_names
       expect(@nlp_parser.entities.first.uri).to eq URI("http://dbpedia.org/resource/John_Lennon")
       expect(@nlp_parser.entities.first.valid?).to eq true
     end
 
     it "should create a validation table of all extracted names" do
-      @nlp_parser.extract_names
       expect(@nlp_parser.report).to eq "John_Lennon,person,http://dbpedia.org/resource/John_Lennon,true|Marie_Curie,person,http://dbpedia.org/resource/Marie_Curie,true|Maddy_Prior,person,http://dbpedia.org/resource/Maddy_Prior,true|Tom_Waits,person,http://dbpedia.org/resource/Tom_Waits,true|Sam_Popowich,person,http://dbpedia.org/resource/Sam_Popowich,|"
     end
   end
