@@ -1,9 +1,11 @@
-require "../../lib/nlp_parser.rb"
+require_relative "./spec_helper"
+
+include E
 
 describe NLPParser do
 
   before(:each) do
-    mods_article = File.open("../fixtures/clean_mods_article.xml").read
+    mods_article = File.open(E::*("fixtures/clean_mods_article.xml")).read
     @nlp_parser = NLPParser.new ModsArticle.new
     @nlp_parser.from_xml mods_article
   end

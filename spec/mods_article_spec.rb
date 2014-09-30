@@ -1,10 +1,11 @@
-require "nokogiri"
-require "../../lib/mods_article.rb"
+require_relative "./spec_helper"
+
+include E
 
 describe ModsArticle do
 
   before(:each) do
-    mods_article_xml = File.open("../fixtures/clean_mods_article.xml")
+    mods_article_xml = File.open(E::*("fixtures/clean_mods_article.xml"))
     @mods_article = ModsArticle.new
     @mods_article.parse(mods_article_xml)
   end
