@@ -14,11 +14,11 @@ class Entity
   end
 
   def valid?
-    @validity || validate
+    @validity ||= validate
   end
 
   def statements
-    @statements || harvest_statements
+    @statements ||= harvest_statements
   end
 
   def to_s
