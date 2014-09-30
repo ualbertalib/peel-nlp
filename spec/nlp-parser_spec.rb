@@ -43,6 +43,11 @@ describe NLPParser do
       expect(@nlp_parser.status).to eq "http://dbpedia.org/resource/John_Lennon,OK,http://dbpedia.org/resource/Marie_Curie,OK,http://dbpedia.org/resource/Maddy_Prior,OK,http://dbpedia.org/resource/Tom_Waits,OK,"
     end
 
-    it "should pull down a list of triples for each person from DBPedia"
+    it "should pull down a list of triples for each person from DBPedia" do
+      @nlp_parser.fetch_triples
+      expect(@nlp_parser.triples.size).to eq 2633
+      expect(@nlp_parser.triples.first.to_s).to eq "<http://dbpedia.org/resource/Live_in_Rio_(Earth,_Wind_&_Fire_album)> <http://dbpedia.org/property/writer> <http://dbpedia.org/resource/John_Lennon> ."
+
+    end
   end
 end

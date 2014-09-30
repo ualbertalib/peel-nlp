@@ -1,7 +1,10 @@
 require "open-uri"
 require "open-nlp"
+require "linkeddata"
 
 class NLPParser
+
+  attr_reader :triples
 
   def initialize(article_class)
     @article = article_class
@@ -99,5 +102,15 @@ class NLPParser
       pretty << "#{uri},#{status},"
     end
     pretty
+  end
+
+  def fetch_triples
+    uris
+    @triples = []
+    @valid_uris.each do |uri,status|
+      RDF::Graph.load(uri).statements.each do |statement|
+        @triples << statement
+      end
+    end
   end
 end
